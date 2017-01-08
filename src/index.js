@@ -1,15 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import React from 'react'
+import ReactDom from 'react-dom'
+import YTSearch from 'youtube-api-search'
 
-import App from './components/app';
-import reducers from './reducers';
+import SearchBar from './components/search_bar'
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+const API_KEY = 'AIzaSyDGTkc_FEKFlVP_yhGrziKSJesXUAtlI7k'
 
-ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
-  </Provider>
-  , document.querySelector('.container'));
+YTSearch({key: API_KEY, term: 'Overwatch tips'}, data => console.log(data));
+
+const App = () =>
+  <div>
+    <SearchBar />
+  </div>
+
+ReactDom.render(<App />, document.querySelector('.container'))
+
